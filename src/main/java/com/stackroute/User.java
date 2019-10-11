@@ -1,16 +1,33 @@
-package com.stackroute;
+package com.stackroute.model;
 
 public class User {
-    String message;
-    public User(String message) {
-        this.message = message;
+    private String name;
+    private String password;
+
+    public String getName() {
+        return name;
     }
 
-    public String getMessage() {
-        return message;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

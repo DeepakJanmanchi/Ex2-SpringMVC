@@ -1,24 +1,32 @@
-package com.stackroute;
+package com.stackroute.controller;
 
-import org.springframework.context.annotation.Configuration;
+import com.stackroute.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Configuration
-@Controller
-class Usercontroller
-{
-    User user=new User("Welcome to Stackroute!");
-    @GetMapping("/*")
-    public ModelAndView add()
-    {
+import javax.servlet.http.HttpServletRequest;
 
-        ModelAndView mv=new ModelAndView("index");
-        mv.addObject("result",user.getMessage());
-        return mv;
+@Controller
+public class UserController
+{
+    @RequestMapping(value = "/")
+    public String mymethod()
+    {
+        return "index";
+    }
+
+    @RequestMapping(value = "/show")
+    public ModelAndView getUserName(HttpServletRequest httpServletRequest)
+    {
+        String username=(httpServletRequest.getParameter("username"));
+        String password=(httpServletRequest.getParameter("password"));
+        User user1=  new User();
+        user1.setName(username);
+        user1.setPassword(password);
+        ModelAndView modelAndView = new ModelAndView("display");
+        modelAndView.addObject("user",user1);
+        return modelAndView;
     }
 
 }
